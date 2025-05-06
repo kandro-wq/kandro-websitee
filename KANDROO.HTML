@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>KANDRO | “BIENVENIDO A NUESTRA PAGINA WEB”</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: black;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: black;
+      color: white;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 48px;
+      letter-spacing: 3px;
+    }
+
+    p {
+      font-size: 20px;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .intro {
+      background-color: black;
+      color: white;
+      padding: 40px 20px;
+      margin-bottom: 50px;
+    }
+
+    .carrusel-container {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto 60px auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .carrusel {
+      position: relative;
+    }
+
+    .slide {
+      position: relative;
+      display: none;
+      cursor: pointer;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .slide img {
+      width: 100%;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 15px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 20px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px 0;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 24px;
+      border-radius: 50%;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    footer {
+      background-color: #000;
+      color: #fff;
+      padding: 15px;
+      font-size: 14px;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Vista previa (Lightbox) */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 5px solid white;
+      border-radius: 10px;
+    }
+
+    #lightbox:active {
+      display: none;
+    }
+
+    #close-lightbox {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 32px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Formulario de contacto */
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #fff;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .success-message {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>KANDRO</h1>
+    <img src="KANDRO_LOGO.png" alt="Logo de KANDRO" width="500" />
+    <p>“playeras que hablan por ti”</p>
+  </header>
+
+  <div class="intro">
+    <p>
+      Marca de playeras con diseños creativos y originales. Tienda en línea y física; compra fácil, segura y rápida desde donde estés.
+      ¡Haz tu pedido en nuestra web o por DM! 📩
+    </p>
+  </div>
+
+  <div class="carrusel-container">
+    <div class="carrusel">
+      <div class="slide">
+        <img src="DISEÑO_1.png" alt="Playera 1" onclick="abrirLightbox(this.src)">
+        <div class="caption">Diseño 1</div>
+      </div>
+      <div class="slide">
+        <img src="DISEÑO_2.png" alt="Playera 2" onclick="abrirLightbox(this.src)">
+        <div class="caption">Diseño 2</div>
+      </div>
+      <div class="slide">
+        <img src="DISEÑO_3.png" alt="Playera 3" onclick="abrirLightbox(this.src)">
+        <div class="caption">Diseño 3</div>
+      </div>
+      <div class="slide">
+        <img src="DISEÑO_4.png" alt="Playera 4" onclick="abrirLightbox(this.src)">
+        <div class="caption">Diseño 4</div>
+      </div>
+      <div class="slide">
+        <img src="DISEÑO_5.png" alt="Playera 5" onclick="abrirLightbox(this.src)">
+        <div class="caption">Diseño 5</div>
+      </div>
+    </div>
+    <button class="prev" onclick="moverCarrusel(-1)">&#10094;</button>
+    <button class="next" onclick="moverCarrusel(1)">&#10095;</button>
+  </div>
+
+  <!-- Sección "Sobre nosotros" -->
+  <section style="background-color: #222; padding: 40px 20px; color: white;">
+    <h2>Sobre KANDRO</h2>
+    <p>
+      KANDRO es una marca de ropa que se especializa en el diseño y venta de playeras personalizadas con estampados originales. 
+      Combina creatividad gráfica con técnicas como serigrafía, vinil textil y sublimación, ofreciendo prendas únicas tanto para el consumidor individual como para clientes empresariales. 
+      Opera como tienda en línea y física, y se apoya principalmente en redes sociales para la promoción y venta. Su enfoque está dirigido a un público joven que busca identidad, estilo y originalidad en su forma de vestir.
+    </p>
+  </section>
+
+  <!-- Formulario de contacto -->
+  <section style="padding: 40px 20px;">
+    <h2>Contáctanos</h2>
+    <form id="contact-form">
+      <input type="text" name="name" placeholder="Tu nombre" required><br>
+      <input type="email" name="email" placeholder="Correo electrónico" required><br>
+      <textarea name="message" placeholder="Escribe tu mensaje..." rows="4" required></textarea><br>
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="success-message" class="success-message">
+      ¡Gracias por contactarnos, te responderemos pronto!
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 KANDRO. Todos los derechos reservados. |
+    <a href="https://www.instagram.com/kandro.mx?igsh=bzlxeXU4MGgyemVj" target="_blank">@kandro.mx</a> |
+    <a href="#">Tienda en línea</a>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" onclick="cerrarLightbox()">
+    <span id="close-lightbox">&times;</span>
+    <img id="lightbox-img" src="" alt="Vista previa">
+  </div>
+
+  <script>
+    let indice = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function mostrarImagen(i) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      indice = (i + slides.length) % slides.length;
+      slides[indice].classList.add('active');
+    }
+
+    function moverCarrusel(direccion) {
+      mostrarImagen(indice + direccion);
+    }
+
+    mostrarImagen(indice);
+    setInterval(() => moverCarrusel(1), 5000);
+
+    function abrirLightbox(src) {
+      document.getElementById("lightbox-img").src = src;
+      document.getElementById("lightbox").style.display = "flex";
+    }
+
+    function cerrarLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      // Lógica de envío del formulario (usar AJAX o backend para enviar al correo)
+      document.getElementById("success-message").style.display = "block";
+      setTimeout(function() {
+        document.getElementById("success-message").style.display = "none";
+      }, 5000);
+    });
+  </script>
+
+</body>
+</html>
